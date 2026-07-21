@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import type { DayId, Experience, Lang } from '../lib/storage'
 import { t, type MessageKey } from '../lib/i18n'
-import { getWorkoutCategories, type WorkoutExercise } from '../lib/workoutContent'
+import { getWorkoutCategories, formatSetScheme, type WorkoutExercise } from '../lib/workoutContent'
 import { AppHeader } from './AppHeader'
 import { VideoModal } from './VideoModal'
 
@@ -68,6 +68,7 @@ export function DayDetail({
               {cat.exercises.map((ex) => {
                 const title = exerciseTitle(lang, ex.titleKey)
                 const playable = Boolean(ex.youtubeId)
+                const schemeLabel = ex.scheme ? formatSetScheme(ex.scheme) : null
                 return (
                   <button
                     key={ex.id}
@@ -76,7 +77,12 @@ export function DayDetail({
                     disabled={!playable}
                     onClick={() => playable && setActive(ex)}
                   >
-                    {title}
+                    <span className="exercise-box-title">{title}</span>
+                    {schemeLabel && (
+                      <span className="exercise-scheme" aria-label={schemeLabel}>
+                        {schemeLabel}
+                      </span>
+                    )}
                   </button>
                 )
               })}

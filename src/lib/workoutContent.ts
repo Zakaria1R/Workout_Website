@@ -1,9 +1,17 @@
 import type { DayId, Experience } from './storage'
 
+/** Language-neutral set scheme: each number is reps for that set. */
+export type SetScheme = {
+  reps: number[]
+  /** Weight increases each set */
+  progressiveLoad?: boolean
+}
+
 export type WorkoutExercise = {
   id: string
   titleKey: string
   youtubeId: string
+  scheme?: SetScheme
 }
 
 export type WorkoutCategory = {
@@ -17,7 +25,12 @@ const day1UnderMonth: WorkoutCategory[] = [
     id: 'chest',
     titleKey: 'catChest',
     exercises: [
-      { id: 'seated-chest-press', titleKey: 'exSeatedChestPress', youtubeId: 'UH6y0fhbw8w' },
+      {
+        id: 'seated-chest-press',
+        titleKey: 'exSeatedChestPress',
+        youtubeId: 'UH6y0fhbw8w',
+        scheme: { reps: [12, 10, 8], progressiveLoad: true },
+      },
       { id: 'chest-fly', titleKey: 'exChestFly', youtubeId: 'eGjt4lk6g34' },
     ],
   },
@@ -117,4 +130,11 @@ export function getWorkoutCategories(day: DayId, experience: Experience): Workou
 
 export function youtubeEmbedUrl(youtubeId: string): string {
   return `https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&rel=0`
+}
+
+/** e.g. "3×  12 → 10 → 8  ▲" — numbers = reps per set; ▲ = add weight each set */
+export function formatSetScheme(scheme: SetScheme): string {
+  const sets = `${scheme.reps.length}×`
+  const reps = scheme.reps.join(' → ')
+  return scheme.progressiveLoad ? `${sets}  ${reps}  ▲` : `${sets}  ${reps}`
 }

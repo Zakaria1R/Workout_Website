@@ -253,14 +253,30 @@ body::before {
   background: rgba(23, 28, 34, 0.95);
   color: inherit;
   font: inherit;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 1.05rem;
   padding: 1.05rem 1.1rem;
   cursor: pointer;
   box-shadow: var(--shadow);
   transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
   animation: rise 0.35s ease both;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+}
+
+.exercise-box-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.exercise-scheme {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
 }
 
 .exercise-box:hover:not(:disabled) {
