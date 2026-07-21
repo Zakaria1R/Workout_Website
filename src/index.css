@@ -298,6 +298,15 @@ body::before {
   line-height: 1.2;
 }
 
+.set-reps {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  color: var(--ink);
+}
+
 .set-reps-max {
   font-size: 0.95rem;
   color: var(--accent);
