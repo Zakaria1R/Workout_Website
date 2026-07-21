@@ -1,7 +1,9 @@
+import { useState } from 'react'
 import type { DayId, Experience, Lang } from '../lib/storage'
-import { t } from '../lib/i18n'
-import { getPlaceholderExercises } from '../lib/placeholders'
+import { t, type MessageKey } from '../lib/i18n'
+import { getWorkoutCategories, type WorkoutExercise } from '../lib/workoutContent'
 import { AppHeader } from './AppHeader'
+import { VideoModal } from './VideoModal'
 
 type Props = {
   lang: Lang
@@ -12,6 +14,13 @@ type Props = {
   onOpenSettings: () => void
 }
 
+function exerciseTitle(lang: Lang, titleKey: string): string {
+  if (titleKey.startsWith('placeholder:')) {
+    return titleKey.replace('placeholder:', 'Coming soon · ')
+  }
+  return t(lang, titleKey as MessageKey)
+}
+
 export function DayDetail({
   lang,
   day,
@@ -20,8 +29,9 @@ export function DayDetail({
   onBack,
   onOpenSettings,
 }: Props) {
-  const exercises = getPlaceholderExercises(day, experience)
+  const categories = getWorkoutCategories(day, experience)
   const dayKey = (`day${day}` as 'day1' | 'day2' | 'day3')
+  const [active, setActive] = useState<WorkoutExercise | null>(null)
 
   return (
     <section className="screen day-detail">
@@ -50,14 +60,39 @@ export function DayDetail({
         </button>
       </div>
 
-      <h2 className="list-heading">{t(lang, 'exercisesHeading')}</h2>
-      <ul className="exercise-list" key={`${day}-${experience}`}>
-        {exercises.map((name) => (
-          <li key={name} className="exercise-item">
-            {name}
-          </li>
+      <div className="category-stack" key={`${day}-${experience}`}>
+        {categories.map((cat) => (
+          <section key={cat.id} className="category-block">
+            <h2 className="category-title">{exerciseTitle(lang, cat.titleKey)}</h2>
+            <div className="exercise-grid">
+              {cat.exercises.map((ex) => {
+                const title = exerciseTitle(lang, ex.titleKey)
+                const playable = Boolean(ex.youtubeId)
+                return (
+                  <button
+                    key={ex.id}
+                    type="button"
+                    className="exercise-box"
+                    disabled={!playable}
+                    onClick={() => playable && setActive(ex)}
+                  >
+                    {title}
+                  </button>
+                )
+              })}
+            </div>
+          </section>
         ))}
-      </ul>
+      </div>
+
+      {active && (
+        <VideoModal
+          youtubeId={active.youtubeId}
+          title={exerciseTitle(lang, active.titleKey)}
+          closeLabel={t(lang, 'close')}
+          onClose={() => setActive(null)}
+        />
+      )}
     </section>
   )
 }
