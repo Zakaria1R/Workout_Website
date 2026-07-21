@@ -66,6 +66,21 @@ const day2UnderMonth: WorkoutCategory[] = [
   },
 ]
 
+const day3UnderMonth: WorkoutCategory[] = [
+  {
+    id: 'lower-body',
+    titleKey: 'catLowerBody',
+    exercises: [
+      { id: 'squat', titleKey: 'exSquat', youtubeId: 'dW3zj79xfrc' },
+      { id: 'leg-press', titleKey: 'exLegPress', youtubeId: 'EotSw18oR9w' },
+      { id: 'hamstring-curls', titleKey: 'exHamstringCurls', youtubeId: 'lGNeJsdqJwg' },
+      { id: 'seated-hip-abduction', titleKey: 'exSeatedHipAbduction', youtubeId: 'ZBQk4FRQdFQ' },
+      { id: 'seated-hip-adduction', titleKey: 'exSeatedHipAdduction', youtubeId: '36EB4I915sU' },
+      { id: 'calf-raises', titleKey: 'exCalfRaises', youtubeId: '_OewEscCsbo' },
+    ],
+  },
+]
+
 function placeholderCategories(day: DayId, experience: Experience): WorkoutCategory[] {
   const tag = experience === 'under_month' ? '<1mo' : '>1mo'
   return [
@@ -91,7 +106,7 @@ const data: Record<DayId, Record<Experience, WorkoutCategory[]>> = {
     over_month: placeholderCategories(2, 'over_month'),
   },
   3: {
-    under_month: placeholderCategories(3, 'under_month'),
+    under_month: day3UnderMonth,
     over_month: placeholderCategories(3, 'over_month'),
   },
 }

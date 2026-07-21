@@ -25,6 +25,7 @@ export type MessageKey =
   | 'catBack'
   | 'catBiceps'
   | 'catCoreAbs'
+  | 'catLowerBody'
   | 'exSeatedChestPress'
   | 'exChestFly'
   | 'exTricepsPushdown'
@@ -37,6 +38,12 @@ export type MessageKey =
   | 'exRopeCurls'
   | 'exPlanks'
   | 'exHeelTouches'
+  | 'exSquat'
+  | 'exLegPress'
+  | 'exHamstringCurls'
+  | 'exSeatedHipAbduction'
+  | 'exSeatedHipAdduction'
+  | 'exCalfRaises'
 
 const messages: Record<Lang, Record<MessageKey, string>> = {
   en: {
@@ -64,6 +71,7 @@ const messages: Record<Lang, Record<MessageKey, string>> = {
     catBack: 'Back',
     catBiceps: 'Biceps',
     catCoreAbs: 'Core / Abs',
+    catLowerBody: 'Lower body',
     exSeatedChestPress: 'Seated chest press machine',
     exChestFly: 'Chest fly machine',
     exTricepsPushdown: 'Triceps pushdown',
@@ -76,6 +84,12 @@ const messages: Record<Lang, Record<MessageKey, string>> = {
     exRopeCurls: 'Rope Curls',
     exPlanks: 'Planks',
     exHeelTouches: 'Heel touches',
+    exSquat: 'Squat',
+    exLegPress: 'Leg press',
+    exHamstringCurls: 'Hamstring curls',
+    exSeatedHipAbduction: 'Seated Hip Abduction',
+    exSeatedHipAdduction: 'Seated hip adduction',
+    exCalfRaises: 'Calf Raises',
   },
   fr: {
     chooseLanguage: 'Choisissez votre langue',
@@ -102,6 +116,7 @@ const messages: Record<Lang, Record<MessageKey, string>> = {
     catBack: 'Dos',
     catBiceps: 'Biceps',
     catCoreAbs: 'Gainage / Abdos',
+    catLowerBody: 'Bas du corps',
     exSeatedChestPress: 'Presse à pectoraux assise',
     exChestFly: 'Écarté pectoraux à la machine',
     exTricepsPushdown: 'Extensions triceps à la poulie haute',
@@ -114,6 +129,12 @@ const messages: Record<Lang, Record<MessageKey, string>> = {
     exRopeCurls: 'Curl biceps à la corde',
     exPlanks: 'Planche',
     exHeelTouches: 'Toucher des talons',
+    exSquat: 'Squat',
+    exLegPress: 'Presse à cuisses',
+    exHamstringCurls: 'Curl ischio-jambiers',
+    exSeatedHipAbduction: 'Abduction de hanche assise',
+    exSeatedHipAdduction: 'Adduction de hanche assise',
+    exCalfRaises: 'Élévations de mollets',
   },
   ar: {
     chooseLanguage: 'اختر لغتك',
@@ -140,6 +161,7 @@ const messages: Record<Lang, Record<MessageKey, string>> = {
     catBack: 'الظهر',
     catBiceps: 'البايسبس',
     catCoreAbs: 'الكور / البطن',
+    catLowerBody: 'الجزء السفلي من الجسم',
     exSeatedChestPress: 'ضغط الصدر جالسًا على الجهاز',
     exChestFly: 'تفتيح الصدر على الجهاز (فلاى)',
     exTricepsPushdown: 'دفع الترايسبس لأسفل (بوش داون)',
@@ -152,6 +174,12 @@ const messages: Record<Lang, Record<MessageKey, string>> = {
     exRopeCurls: 'كارل البايسبس بالحبل',
     exPlanks: 'البلانك',
     exHeelTouches: 'لمس الكعبين',
+    exSquat: 'سكوات',
+    exLegPress: 'ضغط الأرجل (ليج برس)',
+    exHamstringCurls: 'كارل أوتار الركبة',
+    exSeatedHipAbduction: 'تبعيد الورك جالسًا',
+    exSeatedHipAdduction: 'تقريب الورك جالسًا',
+    exCalfRaises: 'رفع السمانة',
   },
 }
 

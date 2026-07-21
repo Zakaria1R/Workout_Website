@@ -22,6 +22,19 @@ describe('getWorkoutCategories', () => {
     expect(cats[2].exercises.map((e) => e.youtubeId)).toEqual(['xe2MXatLTUw', 'RQRKLIpwIJs'])
   })
 
+  it('returns lower body exercises for day 3 under a month', () => {
+    const cats = getWorkoutCategories(3, 'under_month')
+    expect(cats.map((c) => c.id)).toEqual(['lower-body'])
+    expect(cats[0].exercises.map((e) => e.youtubeId)).toEqual([
+      'dW3zj79xfrc',
+      'EotSw18oR9w',
+      'lGNeJsdqJwg',
+      'ZBQk4FRQdFQ',
+      '36EB4I915sU',
+      '_OewEscCsbo',
+    ])
+  })
+
   it('differs for over_month on day 1', () => {
     const a = getWorkoutCategories(1, 'under_month')
     const b = getWorkoutCategories(1, 'over_month')
