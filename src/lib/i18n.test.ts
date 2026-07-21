@@ -14,7 +14,7 @@ describe('t', () => {
     expect(t('en', 'programTitle')).toBe('3-Day Workout Program')
   })
   it('returns French and Arabic titles', () => {
-    expect(t('fr', 'programTitle')).toBe("Programme d'entraînement de 3 jours")
+    expect(t('fr', 'programTitle')).toBe("Programme d'entraînement sur 3 jours")
     expect(t('ar', 'programTitle')).toBe('برنامج تمرين لثلاثة أيام')
   })
 })
