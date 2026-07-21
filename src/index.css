@@ -270,13 +270,70 @@ body::before {
   font-size: 1.05rem;
 }
 
-.exercise-scheme {
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 0.95rem;
-  letter-spacing: 0.04em;
-  color: var(--accent);
+.set-scheme {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 0.45rem;
+  width: 100%;
+  margin-top: 0.15rem;
+}
+
+.set-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.45rem 0.35rem 0.4rem;
+  background: rgba(14, 17, 20, 0.65);
+  border: 1px solid var(--line);
+}
+
+.set-num {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.set-reps {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
   font-variant-numeric: tabular-nums;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.set-load {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2px;
+  height: 12px;
+  margin-top: 0.15rem;
+}
+
+.set-load-bar {
+  width: 4px;
+  background: var(--accent);
+  border-radius: 1px;
+}
+
+.set-load-bar:nth-child(1) {
+  height: 4px;
+}
+.set-load-bar:nth-child(2) {
+  height: 7px;
+}
+.set-load-bar:nth-child(3) {
+  height: 10px;
+}
+.set-load-bar:nth-child(4) {
+  height: 12px;
+}
+.set-load-bar:nth-child(5) {
+  height: 12px;
 }
 
 .exercise-box:hover:not(:disabled) {

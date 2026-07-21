@@ -131,10 +131,3 @@ export function getWorkoutCategories(day: DayId, experience: Experience): Workou
 export function youtubeEmbedUrl(youtubeId: string): string {
   return `https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&rel=0`
 }
-
-/** e.g. "3×  12 → 10 → 8  ▲" — numbers = reps per set; ▲ = add weight each set */
-export function formatSetScheme(scheme: SetScheme): string {
-  const sets = `${scheme.reps.length}×`
-  const reps = scheme.reps.join(' → ')
-  return scheme.progressiveLoad ? `${sets}  ${reps}  ▲` : `${sets}  ${reps}`
-}
