@@ -14,6 +14,14 @@ describe('getWorkoutCategories', () => {
     expect(cats[2].exercises[1].youtubeId).toBe('Crwdh2qlNO0')
   })
 
+  it('returns back, biceps, core/abs for day 2 under a month', () => {
+    const cats = getWorkoutCategories(2, 'under_month')
+    expect(cats.map((c) => c.id)).toEqual(['back', 'biceps', 'core-abs'])
+    expect(cats[0].exercises.map((e) => e.youtubeId)).toEqual(['bNmvKpJSWKM', 'qD1WZ5pSuvk'])
+    expect(cats[1].exercises.map((e) => e.youtubeId)).toEqual(['EhC6ejgDGF0', 'fSfgRE_vcOo'])
+    expect(cats[2].exercises.map((e) => e.youtubeId)).toEqual(['xe2MXatLTUw', 'RQRKLIpwIJs'])
+  })
+
   it('differs for over_month on day 1', () => {
     const a = getWorkoutCategories(1, 'under_month')
     const b = getWorkoutCategories(1, 'over_month')

@@ -22,12 +22,21 @@ export type MessageKey =
   | 'catChest'
   | 'catTriceps'
   | 'catShoulders'
+  | 'catBack'
+  | 'catBiceps'
+  | 'catCoreAbs'
   | 'exSeatedChestPress'
   | 'exChestFly'
   | 'exTricepsPushdown'
   | 'exOverheadExtensions'
   | 'exMachineShoulderPress'
   | 'exBarbellUprightRows'
+  | 'exLatPulldown'
+  | 'exSeatedCableRows'
+  | 'exSingleArmCableCurl'
+  | 'exRopeCurls'
+  | 'exPlanks'
+  | 'exHeelTouches'
 
 const messages: Record<Lang, Record<MessageKey, string>> = {
   en: {
@@ -40,7 +49,7 @@ const messages: Record<Lang, Record<MessageKey, string>> = {
     day2: 'Day 2',
     day3: 'Day 3',
     muscles1: 'Chest · Triceps · Shoulders',
-    muscles2: 'Back · Biceps · Core',
+    muscles2: 'Back · Biceps · Core / Abs',
     muscles3: 'Lower body',
     back: 'Back',
     close: 'Close',
@@ -52,24 +61,33 @@ const messages: Record<Lang, Record<MessageKey, string>> = {
     catChest: 'Chest',
     catTriceps: 'Triceps',
     catShoulders: 'Shoulders',
+    catBack: 'Back',
+    catBiceps: 'Biceps',
+    catCoreAbs: 'Core / Abs',
     exSeatedChestPress: 'Seated chest press machine',
     exChestFly: 'Chest fly machine',
     exTricepsPushdown: 'Triceps pushdown',
     exOverheadExtensions: 'Overhead extensions',
     exMachineShoulderPress: 'Machine shoulder press',
     exBarbellUprightRows: 'Barbell upright rows',
+    exLatPulldown: 'Lat Pulldown',
+    exSeatedCableRows: 'Seated cable rows',
+    exSingleArmCableCurl: 'Single arm cable bicep curl',
+    exRopeCurls: 'Rope Curls',
+    exPlanks: 'Planks',
+    exHeelTouches: 'Heel touches',
   },
   fr: {
     chooseLanguage: 'Choisissez votre langue',
     langEn: 'Anglais',
     langFr: 'Français',
     langAr: 'Arabe',
-    programTitle: "Programme d'entraînement de 3 jours",
+    programTitle: "Programme d'entraînement sur 3 jours",
     day1: 'Jour 1',
     day2: 'Jour 2',
     day3: 'Jour 3',
     muscles1: 'Pectoraux · Triceps · Épaules',
-    muscles2: 'Dos · Biceps · Centre',
+    muscles2: 'Dos · Biceps · Gainage / Abdos',
     muscles3: 'Bas du corps',
     back: 'Retour',
     close: 'Fermer',
@@ -81,12 +99,21 @@ const messages: Record<Lang, Record<MessageKey, string>> = {
     catChest: 'Pectoraux',
     catTriceps: 'Triceps',
     catShoulders: 'Épaules',
-    exSeatedChestPress: 'Développé assis à la machine',
-    exChestFly: 'Écarté à la machine',
-    exTricepsPushdown: 'Pushdown triceps',
-    exOverheadExtensions: 'Extensions au-dessus de la tête',
-    exMachineShoulderPress: 'Développé épaules à la machine',
-    exBarbellUprightRows: 'Rowing menton à la barre',
+    catBack: 'Dos',
+    catBiceps: 'Biceps',
+    catCoreAbs: 'Gainage / Abdos',
+    exSeatedChestPress: 'Presse à pectoraux assise',
+    exChestFly: 'Écarté pectoraux à la machine',
+    exTricepsPushdown: 'Extensions triceps à la poulie haute',
+    exOverheadExtensions: 'Extensions triceps au-dessus de la tête',
+    exMachineShoulderPress: 'Presse à épaules (machine)',
+    exBarbellUprightRows: 'Tirage menton à la barre',
+    exLatPulldown: 'Tirage vertical (lat pulldown)',
+    exSeatedCableRows: 'Rowing assis à la poulie',
+    exSingleArmCableCurl: 'Curl biceps unilatéral à la poulie',
+    exRopeCurls: 'Curl biceps à la corde',
+    exPlanks: 'Planche',
+    exHeelTouches: 'Toucher des talons',
   },
   ar: {
     chooseLanguage: 'اختر لغتك',
@@ -98,8 +125,8 @@ const messages: Record<Lang, Record<MessageKey, string>> = {
     day2: 'اليوم 2',
     day3: 'اليوم 3',
     muscles1: 'صدر · ترايسبس · أكتاف',
-    muscles2: 'ظهر · بايسبس · كور',
-    muscles3: 'الجزء السفلي',
+    muscles2: 'ظهر · بايسبس · كور / بطن',
+    muscles3: 'الجزء السفلي من الجسم',
     back: 'رجوع',
     close: 'إغلاق',
     settings: 'الإعدادات',
@@ -107,15 +134,24 @@ const messages: Record<Lang, Record<MessageKey, string>> = {
     underMonth: 'أقل من شهر',
     overMonth: 'أكثر من شهر',
     exercisesHeading: 'التمارين',
-    catChest: 'صدر',
-    catTriceps: 'ترايسبس',
-    catShoulders: 'أكتاف',
+    catChest: 'الصدر',
+    catTriceps: 'الترايسبس',
+    catShoulders: 'الأكتاف',
+    catBack: 'الظهر',
+    catBiceps: 'البايسبس',
+    catCoreAbs: 'الكور / البطن',
     exSeatedChestPress: 'ضغط الصدر جالسًا على الجهاز',
-    exChestFly: 'تفتيح الصدر على الجهاز',
-    exTricepsPushdown: 'تمرين الترايسبس لأسفل',
-    exOverheadExtensions: 'تمديد فوق الرأس',
+    exChestFly: 'تفتيح الصدر على الجهاز (فلاى)',
+    exTricepsPushdown: 'دفع الترايسبس لأسفل (بوش داون)',
+    exOverheadExtensions: 'تمديد الترايسبس فوق الرأس',
     exMachineShoulderPress: 'ضغط الأكتاف على الجهاز',
-    exBarbellUprightRows: 'سحب عمودي بالبار',
+    exBarbellUprightRows: 'السحب العمودي بالبار (أبرايت رو)',
+    exLatPulldown: 'سحب اللات من الأعلى (لات بول داون)',
+    exSeatedCableRows: 'تجديف جالس بالكابل',
+    exSingleArmCableCurl: 'كارل بايسبس بذراع واحدة بالكابل',
+    exRopeCurls: 'كارل البايسبس بالحبل',
+    exPlanks: 'البلانك',
+    exHeelTouches: 'لمس الكعبين',
   },
 }
 
