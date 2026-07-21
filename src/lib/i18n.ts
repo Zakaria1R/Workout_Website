@@ -19,6 +19,7 @@ export type MessageKey =
   | 'underMonth'
   | 'overMonth'
   | 'exercisesHeading'
+  | 'setLabel'
   | 'catChest'
   | 'catTriceps'
   | 'catShoulders'
@@ -65,6 +66,7 @@ const messages: Record<Lang, Record<MessageKey, string>> = {
     underMonth: 'Less than a month',
     overMonth: 'More than a month',
     exercisesHeading: 'Exercises',
+    setLabel: 'Set',
     catChest: 'Chest',
     catTriceps: 'Triceps',
     catShoulders: 'Shoulders',
@@ -110,6 +112,7 @@ const messages: Record<Lang, Record<MessageKey, string>> = {
     underMonth: "Moins d'un mois",
     overMonth: "Plus d'un mois",
     exercisesHeading: 'Exercices',
+    setLabel: 'Série',
     catChest: 'Pectoraux',
     catTriceps: 'Triceps',
     catShoulders: 'Épaules',
@@ -155,6 +158,7 @@ const messages: Record<Lang, Record<MessageKey, string>> = {
     underMonth: 'أقل من شهر',
     overMonth: 'أكثر من شهر',
     exercisesHeading: 'التمارين',
+    setLabel: 'مجموعة',
     catChest: 'الصدر',
     catTriceps: 'الترايسبس',
     catShoulders: 'الأكتاف',

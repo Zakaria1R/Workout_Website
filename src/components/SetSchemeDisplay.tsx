@@ -1,11 +1,14 @@
+import type { Lang } from '../lib/storage'
 import type { SetScheme } from '../lib/workoutContent'
+import { t } from '../lib/i18n'
 
 type Props = {
   scheme: SetScheme
+  lang: Lang
 }
 
-/** Organized set × reps grid. Ascending bars = heavier weight each set. */
-export function SetSchemeDisplay({ scheme }: Props) {
+/** Set cards: label, reps, ascending bars = heavier each set. */
+export function SetSchemeDisplay({ scheme, lang }: Props) {
   return (
     <div className="set-scheme" role="group">
       {scheme.reps.map((reps, index) => {
@@ -13,7 +16,9 @@ export function SetSchemeDisplay({ scheme }: Props) {
         const weightLevel = scheme.progressiveLoad ? index + 1 : 1
         return (
           <div key={setNumber} className="set-cell">
-            <span className="set-num">{setNumber}</span>
+            <span className="set-num">
+              {t(lang, 'setLabel')} {setNumber}
+            </span>
             <span className="set-reps">{reps}</span>
             {scheme.progressiveLoad && (
               <span className="set-load" aria-hidden="true">

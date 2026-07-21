@@ -78,7 +78,7 @@ export function DayDetail({
                     onClick={() => playable && setActive(ex)}
                   >
                     <span className="exercise-box-title">{title}</span>
-                    {ex.scheme && <SetSchemeDisplay scheme={ex.scheme} />}
+                    {ex.scheme && <SetSchemeDisplay scheme={ex.scheme} lang={lang} />}
                   </button>
                 )
               })}

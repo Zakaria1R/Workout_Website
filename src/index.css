@@ -290,10 +290,12 @@ body::before {
 }
 
 .set-num {
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.02em;
   color: var(--muted);
+  text-align: center;
+  line-height: 1.2;
 }
 
 .set-reps {

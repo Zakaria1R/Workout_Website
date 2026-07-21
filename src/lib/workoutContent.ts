@@ -1,10 +1,16 @@
 import type { DayId, Experience } from './storage'
 
-/** Language-neutral set scheme: each number is reps for that set. */
+/** Each number is reps for that set. */
 export type SetScheme = {
   reps: number[]
   /** Weight increases each set */
   progressiveLoad?: boolean
+}
+
+/** Default for all exercises unless overridden */
+export const DEFAULT_SCHEME: SetScheme = {
+  reps: [12, 10, 8],
+  progressiveLoad: true,
 }
 
 export type WorkoutExercise = {
@@ -20,34 +26,38 @@ export type WorkoutCategory = {
   exercises: WorkoutExercise[]
 }
 
+function ex(
+  id: string,
+  titleKey: string,
+  youtubeId: string,
+  scheme: SetScheme = DEFAULT_SCHEME,
+): WorkoutExercise {
+  return { id, titleKey, youtubeId, scheme }
+}
+
 const day1UnderMonth: WorkoutCategory[] = [
   {
     id: 'chest',
     titleKey: 'catChest',
     exercises: [
-      {
-        id: 'seated-chest-press',
-        titleKey: 'exSeatedChestPress',
-        youtubeId: 'UH6y0fhbw8w',
-        scheme: { reps: [12, 10, 8], progressiveLoad: true },
-      },
-      { id: 'chest-fly', titleKey: 'exChestFly', youtubeId: 'eGjt4lk6g34' },
+      ex('seated-chest-press', 'exSeatedChestPress', 'UH6y0fhbw8w'),
+      ex('chest-fly', 'exChestFly', 'eGjt4lk6g34'),
     ],
   },
   {
     id: 'triceps',
     titleKey: 'catTriceps',
     exercises: [
-      { id: 'triceps-pushdown', titleKey: 'exTricepsPushdown', youtubeId: 'XpeCPOHJTK8' },
-      { id: 'overhead-extensions', titleKey: 'exOverheadExtensions', youtubeId: '9Ark9S11uXw' },
+      ex('triceps-pushdown', 'exTricepsPushdown', 'XpeCPOHJTK8'),
+      ex('overhead-extensions', 'exOverheadExtensions', '9Ark9S11uXw'),
     ],
   },
   {
     id: 'shoulders',
     titleKey: 'catShoulders',
     exercises: [
-      { id: 'machine-shoulder-press', titleKey: 'exMachineShoulderPress', youtubeId: '6v4nrRVySj0' },
-      { id: 'barbell-upright-rows', titleKey: 'exBarbellUprightRows', youtubeId: 'Crwdh2qlNO0' },
+      ex('machine-shoulder-press', 'exMachineShoulderPress', '6v4nrRVySj0'),
+      ex('barbell-upright-rows', 'exBarbellUprightRows', 'Crwdh2qlNO0'),
     ],
   },
 ]
@@ -57,24 +67,24 @@ const day2UnderMonth: WorkoutCategory[] = [
     id: 'back',
     titleKey: 'catBack',
     exercises: [
-      { id: 'lat-pulldown', titleKey: 'exLatPulldown', youtubeId: 'bNmvKpJSWKM' },
-      { id: 'seated-cable-rows', titleKey: 'exSeatedCableRows', youtubeId: 'qD1WZ5pSuvk' },
+      ex('lat-pulldown', 'exLatPulldown', 'bNmvKpJSWKM'),
+      ex('seated-cable-rows', 'exSeatedCableRows', 'qD1WZ5pSuvk'),
     ],
   },
   {
     id: 'biceps',
     titleKey: 'catBiceps',
     exercises: [
-      { id: 'single-arm-cable-curl', titleKey: 'exSingleArmCableCurl', youtubeId: 'EhC6ejgDGF0' },
-      { id: 'rope-curls', titleKey: 'exRopeCurls', youtubeId: 'fSfgRE_vcOo' },
+      ex('single-arm-cable-curl', 'exSingleArmCableCurl', 'EhC6ejgDGF0'),
+      ex('rope-curls', 'exRopeCurls', 'fSfgRE_vcOo'),
     ],
   },
   {
     id: 'core-abs',
     titleKey: 'catCoreAbs',
     exercises: [
-      { id: 'planks', titleKey: 'exPlanks', youtubeId: 'xe2MXatLTUw' },
-      { id: 'heel-touches', titleKey: 'exHeelTouches', youtubeId: 'RQRKLIpwIJs' },
+      ex('planks', 'exPlanks', 'xe2MXatLTUw'),
+      ex('heel-touches', 'exHeelTouches', 'RQRKLIpwIJs'),
     ],
   },
 ]
@@ -84,12 +94,12 @@ const day3UnderMonth: WorkoutCategory[] = [
     id: 'lower-body',
     titleKey: 'catLowerBody',
     exercises: [
-      { id: 'squat', titleKey: 'exSquat', youtubeId: 'dW3zj79xfrc' },
-      { id: 'leg-press', titleKey: 'exLegPress', youtubeId: 'EotSw18oR9w' },
-      { id: 'hamstring-curls', titleKey: 'exHamstringCurls', youtubeId: 'lGNeJsdqJwg' },
-      { id: 'seated-hip-abduction', titleKey: 'exSeatedHipAbduction', youtubeId: 'ZBQk4FRQdFQ' },
-      { id: 'seated-hip-adduction', titleKey: 'exSeatedHipAdduction', youtubeId: '36EB4I915sU' },
-      { id: 'calf-raises', titleKey: 'exCalfRaises', youtubeId: '_OewEscCsbo' },
+      ex('squat', 'exSquat', 'dW3zj79xfrc'),
+      ex('leg-press', 'exLegPress', 'EotSw18oR9w'),
+      ex('hamstring-curls', 'exHamstringCurls', 'lGNeJsdqJwg'),
+      ex('seated-hip-abduction', 'exSeatedHipAbduction', 'ZBQk4FRQdFQ'),
+      ex('seated-hip-adduction', 'exSeatedHipAdduction', '36EB4I915sU'),
+      ex('calf-raises', 'exCalfRaises', '_OewEscCsbo'),
     ],
   },
 ]

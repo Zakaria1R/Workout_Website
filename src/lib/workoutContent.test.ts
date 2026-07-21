@@ -14,9 +14,14 @@ describe('getWorkoutCategories', () => {
     expect(cats[2].exercises[1].youtubeId).toBe('Crwdh2qlNO0')
   })
 
-  it('includes progressive 12-10-8 scheme on seated chest press', () => {
-    const press = getWorkoutCategories(1, 'under_month')[0].exercises[0]
-    expect(press.scheme).toEqual({ reps: [12, 10, 8], progressiveLoad: true })
+  it('applies default 12-10-8 progressive scheme to all beginner exercises', () => {
+    for (const day of [1, 2, 3] as const) {
+      for (const cat of getWorkoutCategories(day, 'under_month')) {
+        for (const exercise of cat.exercises) {
+          expect(exercise.scheme).toEqual({ reps: [12, 10, 8], progressiveLoad: true })
+        }
+      }
+    }
   })
 
   it('returns back, biceps, core/abs for day 2 under a month', () => {
