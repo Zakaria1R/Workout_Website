@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { getWorkoutCategories, youtubeEmbedUrl } from './workoutContent'
+import { getWorkoutCategories, youtubeEmbedUrl, formatSetScheme } from './workoutContent'
 
 describe('getWorkoutCategories', () => {
   it('returns chest, triceps, shoulders for day 1 under a month', () => {
@@ -12,6 +12,12 @@ describe('getWorkoutCategories', () => {
     expect(cats[1].exercises[1].youtubeId).toBe('9Ark9S11uXw')
     expect(cats[2].exercises[0].youtubeId).toBe('6v4nrRVySj0')
     expect(cats[2].exercises[1].youtubeId).toBe('Crwdh2qlNO0')
+  })
+
+  it('includes progressive 12-10-8 scheme on seated chest press', () => {
+    const press = getWorkoutCategories(1, 'under_month')[0].exercises[0]
+    expect(press.scheme).toEqual({ reps: [12, 10, 8], progressiveLoad: true })
+    expect(formatSetScheme(press.scheme!)).toBe('3×  12 → 10 → 8  ▲')
   })
 
   it('returns back, biceps, core/abs for day 2 under a month', () => {
