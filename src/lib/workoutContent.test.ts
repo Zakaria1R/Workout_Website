@@ -14,14 +14,25 @@ describe('getWorkoutCategories', () => {
     expect(cats[2].exercises[1].youtubeId).toBe('Crwdh2qlNO0')
   })
 
-  it('applies default 12-10-8 progressive scheme to all beginner exercises', () => {
+  it('applies default 12-10-8 progressive scheme to weighted beginner exercises', () => {
     for (const day of [1, 2, 3] as const) {
       for (const cat of getWorkoutCategories(day, 'under_month')) {
         for (const exercise of cat.exercises) {
-          expect(exercise.scheme).toEqual({ reps: [12, 10, 8], progressiveLoad: true })
+          if (exercise.id === 'planks' || exercise.id === 'heel-touches') continue
+          expect(exercise.scheme).toEqual({
+            kind: 'reps',
+            reps: [12, 10, 8],
+            progressiveLoad: true,
+          })
         }
       }
     }
+  })
+
+  it('uses max-time planks and max-reps heel touches with no load', () => {
+    const core = getWorkoutCategories(2, 'under_month').find((c) => c.id === 'core-abs')!
+    expect(core.exercises[0].scheme).toEqual({ kind: 'max_time', sets: 3 })
+    expect(core.exercises[1].scheme).toEqual({ kind: 'max_reps', sets: 3 })
   })
 
   it('returns back, biceps, core/abs for day 2 under a month', () => {

@@ -1,17 +1,32 @@
 import type { DayId, Experience } from './storage'
 
-/** Each number is reps for that set. */
-export type SetScheme = {
-  reps: number[]
-  /** Weight increases each set */
-  progressiveLoad?: boolean
-}
+export type SetScheme =
+  | {
+      kind: 'reps'
+      reps: number[]
+      /** Weight increases each set */
+      progressiveLoad?: boolean
+    }
+  | {
+      /** Hold as long as possible each set (e.g. plank) */
+      kind: 'max_time'
+      sets: number
+    }
+  | {
+      /** As many reps as possible each set */
+      kind: 'max_reps'
+      sets: number
+    }
 
 /** Default for all exercises unless overridden */
 export const DEFAULT_SCHEME: SetScheme = {
+  kind: 'reps',
   reps: [12, 10, 8],
   progressiveLoad: true,
 }
+
+export const MAX_TIME_3: SetScheme = { kind: 'max_time', sets: 3 }
+export const MAX_REPS_3: SetScheme = { kind: 'max_reps', sets: 3 }
 
 export type WorkoutExercise = {
   id: string
@@ -83,8 +98,8 @@ const day2UnderMonth: WorkoutCategory[] = [
     id: 'core-abs',
     titleKey: 'catCoreAbs',
     exercises: [
-      ex('planks', 'exPlanks', 'xe2MXatLTUw'),
-      ex('heel-touches', 'exHeelTouches', 'RQRKLIpwIJs'),
+      ex('planks', 'exPlanks', 'xe2MXatLTUw', MAX_TIME_3),
+      ex('heel-touches', 'exHeelTouches', 'RQRKLIpwIJs', MAX_REPS_3),
     ],
   },
 ]
@@ -140,4 +155,9 @@ export function getWorkoutCategories(day: DayId, experience: Experience): Workou
 
 export function youtubeEmbedUrl(youtubeId: string): string {
   return `https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&rel=0`
+}
+
+export function schemeSetCount(scheme: SetScheme): number {
+  if (scheme.kind === 'reps') return scheme.reps.length
+  return scheme.sets
 }
